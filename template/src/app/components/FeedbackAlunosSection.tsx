@@ -23,14 +23,14 @@ export default function Carousel() {
   const controls = useAnimation();
 
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const handleScroll = () => setScrollY(window.scrollY);
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     const handleScroll = () => setScrollY(window.scrollY);
       
-      window.addEventListener("scroll", handleScroll);
-      return () => window.removeEventListener("scroll", handleScroll);
-    }
-  }, []);
+  //     window.addEventListener("scroll", handleScroll);
+  //     return () => window.removeEventListener("scroll", handleScroll);
+  //   }
+  // }, []);
 
   useEffect(() => {
     const progress = Math.min(scrollY / 300, 1);

@@ -5,14 +5,14 @@ import { useEffect, useState } from "react";
 const MarqueeSection = () => {
   const [scrollY, setScrollY] = useState(0);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const handleScroll = () => setScrollY(window.scrollY);
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     const handleScroll = () => setScrollY(window.scrollY);
       
-      window.addEventListener("scroll", handleScroll);
-      return () => window.removeEventListener("scroll", handleScroll);
-    }
-  }, []);
+  //     window.addEventListener("scroll", handleScroll);
+  //     return () => window.removeEventListener("scroll", handleScroll);
+  //   }
+  // }, []);
   
 
   const moveText = (scrollY: number) => {
