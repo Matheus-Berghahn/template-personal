@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { useForm, SubmitHandler } from "react-hook-form";
 import emailjs from "@emailjs/browser";
+import { Map, Marker } from "pigeon-maps";
 
 interface FormData {
   name: string;
@@ -40,10 +41,10 @@ const ContactSection = () => {
 
   return (
     <div className="relative w-full py-20 md:py-40 bg-black/50 backdrop-blur-lg border border-white/20 flex items-center justify-center px-5 md:px-0 rounded-3xl md:mb-5 shadow-lg">
-      <div className="flex flex-col md:flex-row items-start justify-center w-full md:w-4/5 max-w-screen-xl">
+      <div className="flex flex-col md:flex-col xl:flex-row items-start justify-center w-full md:w-4/5 max-w-screen-xl">
         
         {/* Formulário */}
-        <div className="md:w-1/2 md:pr-12">
+        <div className="w-full xl:w-1/2 md:pr-12">
           <motion.h2
             className="text-3xl text-center md:text-left font-bold mb-10 text-white"
             initial={{ opacity: 0, y: 20 }}
@@ -94,8 +95,8 @@ const ContactSection = () => {
           </form>
         </div>
 
-        {/* Área onde estava o mapa - pode ser substituída por outra informação */}
-        <div className="w-full md:w-1/2 mt-10 md:mt-0">
+        {/* Mapa */}
+        <div className="w-full xl:w-1/2 mt-10 md:mt-20 xl:mt-0">
           <motion.h2
             className="text-3xl text-center md:text-left font-bold mb-6 text-white"
             initial={{ opacity: 0, y: 20 }}
@@ -105,14 +106,17 @@ const ContactSection = () => {
             Onde eu atuo
           </motion.h2>
 
-          <div className="border bg-gray-800 border-amber-400 rounded-md p-6 text-white text-center shadow-md">
-            <p>Atendo em diversas regiões!</p>
+          {/* Pigeon Map Wrapper */}
+          <div className="border bg-amber-400 border-gray-800 mt-10 rounded-md shadow-md">
+            <Map height={300} center={[-30.0331, -51.2300]} zoom={12}>
+              {/* Adicionar Marcadores no Mapa */}
+              <Marker anchor={[-30.0331, -51.2300]} />
+            </Map>
           </div>
-
           <div className="flex w-full justify-center space-x-4 pt-5 text-white text-xs">
-            <p className="border-r-2 border-gray-800 pr-4">Porto Alegre</p>
-            <p className="border-r-2 border-gray-800 pr-4">Canoas</p>
-            <p className="border-r-2 border-gray-800 pr-4">São Leopoldo</p>
+            <p className="border-r-2 border-cinza pr-4">Porto Alegre</p>
+            <p className="border-r-2 border-cinza pr-4">Canoas</p>
+            <p className="border-r-2 border-cinza pr-4">São Leopoldo</p>
             <p>Gravataí</p>
           </div>
         </div>
