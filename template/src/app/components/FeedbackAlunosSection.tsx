@@ -22,7 +22,6 @@ export default function Carousel() {
   const [scrollY, setScrollY] = useState(0);
   const controls = useAnimation();
 
-  console.log(window)
 
   useEffect(() => {
     if (typeof window !== "undefined") {
