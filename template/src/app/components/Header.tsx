@@ -1,34 +1,14 @@
 "use client"
 import { motion, useAnimation } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import persona from "../../../public/persona.png";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
+  const [scrollY] = useState(0);
   const controls = useAnimation();
 
-  const windowClient = useRef<Window | null>(null); // Usando useRef ao invés de useState
-  
-    useEffect(() => {
-      if (typeof window !== "undefined") {
-        windowClient.current = window; // Armazenando a referência do window
-      }
-    }, []);
-  
-    useEffect(() => {
-      if (!windowClient.current) return; // Garantir que o windowClient esteja disponível
-  
-      const handleScroll = () => {
-        setScrollY(windowClient.current?.scrollY ?? 0); // Acessando a referência corretamente
-      };
-  
-      windowClient.current.addEventListener("scroll", handleScroll);
-  
-      return () => {
-        windowClient.current?.removeEventListener("scroll", handleScroll);
-      };
-    }, []);
+
 
   useEffect(() => {
     const progress = Math.min(scrollY / 300, 1);
@@ -142,7 +122,14 @@ const Header = () => {
 
         <motion.div
           className="absolute top-[-20%] right-[-24%] h-[140%] w-[42%] bg-amber-400 anim_shape_07 anim_shape opacity-0 rounded-lg"
-          style={{ boxShadow: "inset 0px 0px 10px rgba(0, 0, 0, 0.6)" }}
+          style={{ 
+            boxShadow: "inset 0px 0px 10px rgba(0, 0, 0, 0.6)", 
+            backgroundImage: "url('/bg_header.jpg')",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat"
+          }}
+          
           animate={controls}
           initial={{ rotate: 50 }} // Inicialmente com rotação
           transition={{ delay: 0.7, duration: 0.6 }}

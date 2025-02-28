@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import L from "leaflet"; // Importando o Leaflet para usar o L.divIcon
+import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import emailjs from "@emailjs/browser";
 
@@ -22,23 +22,21 @@ const ContactSection = () => {
   const onSubmit: SubmitHandler<FormData> = (data) => {
     const { name, email, message } = data;
 
-
-    // Envia o e-mail via EmailJS
     emailjs
       .send(
-        "service_r6n3jhs", // Substitua pelo seu Service ID do EmailJS
-        "template_270e7pb", // Substitua pelo seu Template ID do EmailJS
+        "service_r6n3jhs", 
+        "template_270e7pb", 
         {
           name,
           email,
           message,
         },
-        "hb2GD2-Hj2bb9BIgG" // Substitua pelo seu User ID do EmailJS
+        "hb2GD2-Hj2bb9BIgG"
       )
       .then(
         (response) => {
           console.log("E-mail enviado com sucesso", response);
-          setFormSubmitted(true); // Exibe a confirmação de envio
+          setFormSubmitted(true); 
         },
         (error) => {
           console.error("Erro ao enviar o e-mail", error);
