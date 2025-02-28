@@ -1,4 +1,4 @@
-'use client';
+
 import { motion, useAnimation } from "framer-motion";
 import 'swiper/css';
 import 'swiper/css/navigation';
