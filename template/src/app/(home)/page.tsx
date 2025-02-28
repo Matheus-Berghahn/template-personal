@@ -1,5 +1,6 @@
 
 "use client"
+
 import { ParallaxProvider } from "react-scroll-parallax";
 import Header from "../components/Header";
 import Marquee from "../components/Marquee";
@@ -12,8 +13,6 @@ import ContactSection from "../components/ContactSection";
 
 
 export default function Home() {
-
- 
 
  
   return (
