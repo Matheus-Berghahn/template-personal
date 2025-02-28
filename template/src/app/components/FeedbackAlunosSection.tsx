@@ -4,7 +4,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import SlideShow from '../components/SlideShow';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import alter from "../../../public/alter.png";
 
@@ -21,16 +21,27 @@ export default function Carousel() {
 
   const [scrollY, setScrollY] = useState(0);
   const controls = useAnimation();
+  const windowClient = useRef<Window | null>(null); // Usando useRef ao invés de useState
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      windowClient.current = window; // Armazenando a referência do window
+    }
+  }, []);
 
-  // useEffect(() => {
-  //   if (typeof window !== "undefined") {
-  //     const handleScroll = () => setScrollY(window.scrollY);
-      
-  //     window.addEventListener("scroll", handleScroll);
-  //     return () => window.removeEventListener("scroll", handleScroll);
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (!windowClient.current) return; // Garantir que o windowClient esteja disponível
+
+    const handleScroll = () => {
+      setScrollY(windowClient.current?.scrollY ?? 0); // Acessando a referência corretamente
+    };
+
+    windowClient.current.addEventListener("scroll", handleScroll);
+
+    return () => {
+      windowClient.current?.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const progress = Math.min(scrollY / 300, 1);

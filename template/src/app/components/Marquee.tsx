@@ -1,18 +1,31 @@
 "use client"
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const MarqueeSection = () => {
   const [scrollY, setScrollY] = useState(0);
 
-  // useEffect(() => {
-  //   if (typeof window !== "undefined") {
-  //     const handleScroll = () => setScrollY(window.scrollY);
-      
-  //     window.addEventListener("scroll", handleScroll);
-  //     return () => window.removeEventListener("scroll", handleScroll);
-  //   }
-  // }, []);
+  const windowClient = useRef<Window | null>(null); // Usando useRef ao invés de useState
+  
+    useEffect(() => {
+      if (typeof window !== "undefined") {
+        windowClient.current = window; // Armazenando a referência do window
+      }
+    }, []);
+  
+    useEffect(() => {
+      if (!windowClient.current) return; // Garantir que o windowClient esteja disponível
+  
+      const handleScroll = () => {
+        setScrollY(windowClient.current?.scrollY ?? 0); // Acessando a referência corretamente
+      };
+  
+      windowClient.current.addEventListener("scroll", handleScroll);
+  
+      return () => {
+        windowClient.current?.removeEventListener("scroll", handleScroll);
+      };
+    }, []);
   
 
   const moveText = (scrollY: number) => {
