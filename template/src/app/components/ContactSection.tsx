@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
 import emailjs from "@emailjs/browser";
 
 interface FormData {
@@ -11,16 +8,6 @@ interface FormData {
   email: string;
   message: string;
 }
-
-const customIcon = L.icon({
-  iconUrl: "https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/images/marker-icon.png",
-  iconSize: [25, 41], // Tamanho do ícone
-  iconAnchor: [12, 41], // Ponto onde o ícone se ancora no mapa
-  popupAnchor: [1, -34], // Onde a popup aparece em relação ao ícone
-  shadowUrl: "https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/images/marker-shadow.png",
-  shadowSize: [41, 41], // Tamanho da sombra do ícone
-});
-
 
 const ContactSection = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
@@ -50,8 +37,6 @@ const ContactSection = () => {
         }
       );
   };
-  
-  
 
   return (
     <div className="relative w-full py-20 md:py-40 bg-black/50 backdrop-blur-lg border border-white/20 flex items-center justify-center px-5 md:px-0 rounded-3xl md:mb-5 shadow-lg">
@@ -109,7 +94,7 @@ const ContactSection = () => {
           </form>
         </div>
 
-        {/* Mapa */}
+        {/* Área onde estava o mapa - pode ser substituída por outra informação */}
         <div className="w-full md:w-1/2 mt-10 md:mt-0">
           <motion.h2
             className="text-3xl text-center md:text-left font-bold mb-6 text-white"
@@ -120,19 +105,9 @@ const ContactSection = () => {
             Onde eu atuo
           </motion.h2>
 
-          <MapContainer 
-            center={[-30.0331, -51.2300]} 
-            zoom={15} 
-            className="border bg-amber-400 border-gray-800 mt-10 rounded-md shadow-md"
-            style={{ height: "300px", width: "100%" }}
-          >
-            <TileLayer
-              url="https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=osrwLpk4mvBeWmJUVrad"
-            />
-            <Marker position={[-30.0331, -51.2300]} icon={customIcon}>
-              <Popup>Porto Alegre - RS</Popup>
-            </Marker>
-          </MapContainer>
+          <div className="border bg-gray-800 border-amber-400 rounded-md p-6 text-white text-center shadow-md">
+            <p>Atendo em diversas regiões!</p>
+          </div>
 
           <div className="flex w-full justify-center space-x-4 pt-5 text-white text-xs">
             <p className="border-r-2 border-gray-800 pr-4">Porto Alegre</p>
