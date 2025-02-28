@@ -1,16 +1,21 @@
 
 "use client"
 import { ParallaxProvider } from "react-scroll-parallax";
-import Header from "./components/Header";
-import Marquee from "./components/Marquee";
-import DiferencialSection from "./components/DiferencialSection";
-import AcompanhamentoSection from "./components/AcompanhamentoSection";
-import FeedbackAlunosSection from "./components/FeedbackAlunosSection";
-import SectionWithCards from "./components/SectionWithCards";
-import ContactSection from "./components/ContactSection";
+import Header from "../components/Header";
+import Marquee from "../components/Marquee";
+import DiferencialSection from "../components/DiferencialSection";
+import AcompanhamentoSection from "../components/AcompanhamentoSection";
+import FeedbackAlunosSection from "../components/FeedbackAlunosSection";
+import SectionWithCards from "../components/SectionWithCards";
+import ContactSection from "../components/ContactSection";
+
 
 
 export default function Home() {
+
+ 
+
+ 
   return (
     <>
     <Header></Header>

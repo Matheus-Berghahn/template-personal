@@ -8,7 +8,7 @@ import aluno_01 from '../../../public/aluno_01.png';
 type ImageType = typeof aluno_01;
 
 const slideStyles = (isActive: boolean) => ({
-  transform: isActive ? 'scale(1)' : 'scale(0.95)', // Ajustando o zoom para que as imagens apareçam mais naturalmente
+  transform: isActive ? 'scale(1)' : 'scale(0.95)', 
   transition: 'transform 0.5s ease',
   opacity: isActive ? 1 : 0.9,
   filter: isActive ? 'none' : 'grayscale(100%)',
@@ -20,14 +20,14 @@ const SlideShow = ({ images }: { images: ImageType[] }) => {
   return (
     <Swiper
       modules={[Autoplay]}
-      spaceBetween={10} // Ajuste o espaço entre as imagens para evitar sobreposição
+      spaceBetween={10} 
       centeredSlides={true}
       loop={true}
       slideToClickedSlide={true}
       breakpoints={{
         320: {
           slidesPerView: 1.5,
-          spaceBetween: 10, // Menor espaço entre as imagens
+          spaceBetween: 10, 
         },
         640: {
           slidesPerView: 2.5,
@@ -51,9 +51,9 @@ const SlideShow = ({ images }: { images: ImageType[] }) => {
               <Image
                 src={image}
                 alt={`Slide ${index + 1}`}
-                className="object-contain rounded-lg" // Mudança de 'object-cover' para 'object-contain'
+                className="object-contain rounded-lg"
                 style={slideStyles(isActive)}
-                layout="intrinsic" // Para garantir que a imagem não seja cortada
+                layout="intrinsic" 
               />
             </div>
           )}
